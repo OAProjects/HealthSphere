@@ -30,3 +30,12 @@ body {
     color: var(--text-black);
 }
 
+button {
+    font-family: var(--font-family);
+    font-size: var(--md-font-size);
+    cursor: pointer;
+    border: 2px solid var(--accent-color);
+    padding: 10px;
+    outline: none;
+    width: fit-content;
+}

@@ -1,11 +1,16 @@
-import Navbar from "../../components/Navbar/NavbarComponent";
+import styles from "./Landing.module.css";
 
 const Landing = () => {
   return (
-    <div>
-      <Navbar />
-      <h1>Landing Page</h1>
-    </div>
+    <section className={styles.container}>
+      <h1>Welcome to Health Sphere</h1>
+      <p>Please login to book your doctors appointment</p>
+      <div className={styles.buttons}>
+
+        <button>Login</button>
+        <button>Register</button>
+      </div>
+    </section>
   );
 };
 

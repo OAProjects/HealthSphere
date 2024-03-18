@@ -1,7 +1,7 @@
 import styles from "./Navbar.module.css";
 
 const NavbarComponent = () => {
-  return <div>NavbarComponent</div>;
+  return <div>Navbar Component</div>;
 };
 
 export default NavbarComponent;
