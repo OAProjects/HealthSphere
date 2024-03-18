@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import authRoutes from "./routes/authRoutes.js";
+import { authMiddleware } from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
@@ -14,6 +16,9 @@ app.use(cors());
 app.use(helmet());
 
 // Routes
+app.use("/auth", authRoutes);
+
+app.use(authMiddleware);
 
 // MongoDB Connection
 const PORT = process.env.PORT || 6001;
