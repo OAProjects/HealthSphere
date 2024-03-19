@@ -5,6 +5,7 @@ import helmet from "helmet";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import appointmentRoutes from "./routes/appointmentRoutes.js";
 import { authMiddleware } from "./middleware/authMiddleware.js";
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(helmet());
 // Routes
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
+app.use("/appointments", appointmentRoutes);
 
 app.use(authMiddleware);
 
