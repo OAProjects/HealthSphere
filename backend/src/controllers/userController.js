@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import Appointment from "../models/Appointment.js";
 
 export const allUsers = async (req, res) => {
   try {
@@ -22,10 +23,29 @@ export const allUsers = async (req, res) => {
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
+
+    // Find the user by ID
     const user = await User.findById(id, { password: 0, __v: 0 }).lean();
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
+    let appointments = [];
+
+    // Fetch appointments based on user's role
+    if (user.role === 'patient') {
+      appointments = await Appointment.find({ patient: id })
+        .populate('doctor', 'firstName lastName') // Populate doctor details (first name and last name)
+        .lean();
+    } else if (user.role === 'doctor') {
+      appointments = await Appointment.find({ doctor: id })
+        .populate('patient', 'firstName lastName') // Populate patient details (first name and last name)
+        .lean();
+    }
+
+    // Include appointments in the user response
+    user.appointments = appointments;
+
     res.status(200).json(user);
   } catch (error) {
     console.error("Error retrieving user:", error);

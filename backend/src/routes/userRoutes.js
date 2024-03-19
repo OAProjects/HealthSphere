@@ -1,16 +1,22 @@
 import express from "express";
-import { allUsers, getUser, updatePassword, deleteUser } from "../controllers/userController.js";
+import {
+  allUsers,
+  getUser,
+  updatePassword,
+  deleteUser,
+} from "../controllers/userController.js";
+import { authMiddleware } from "../middleware/authMiddleware.js"; // Import the authMiddleware
 
 const router = express.Router();
 
 // Get routes
-router.get("/", allUsers);
-router.get("/:id", getUser);
+router.get("/", authMiddleware, allUsers);
+router.get("/:id", authMiddleware, getUser);
 
 // Put routes
-router.put("/:id", updatePassword);
+router.put("/:id", authMiddleware, updatePassword);
 
 // Delete routes
-router.delete("/:id", deleteUser);
+router.delete("/:id", authMiddleware, deleteUser);
 
 export default router;
