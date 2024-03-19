@@ -2,7 +2,7 @@
 :root {
     --primary-color: #edf2f4;
     --secondary-color: #7209b7;
-    --accent-color: #00b4d8;
+    --accent-color: #0080FF;
 
     --text-white: #fff;
     --text-black: #000;
@@ -10,9 +10,13 @@
     --xs-font-size: 0.75rem;
     --sm-font-size: 0.875rem;
     --md-font-size: 1rem;
-    --lg-font-size: 1.125rem;
-    --xl-font-size: 1.25rem;
-    --xxl-font-size: 1.5rem;
+    --lg-font-size: 1.725rem;
+    --xl-font-size: 2.25rem;
+    --xxl-font-size: 3.5rem;
+
+    --thin-font: 300;
+    --regular-font: 400;
+    --bold-font: 700;
 
     --font-family: 'Nunito', sans-serif;
 }
@@ -30,12 +34,29 @@ body {
     color: var(--text-black);
 }
 
+h1 {
+    font-size: var(--xxl-font-size);
+    font-weight: var(--font-bold);
+    color: var(--accent-color);
+}
+p {
+    font-size: var(--md-font-size);
+    font-weight: var(--regular-font);
+    color: var(--text-black);
+}
 button {
     font-family: var(--font-family);
     font-size: var(--md-font-size);
     cursor: pointer;
-    border: 2px solid var(--accent-color);
+    background-color: var(--accent-color);
+    border: 2px solid var(--text-white);
+    border-radius: 100px;
+    color: var(--text-white);
     padding: 10px;
     outline: none;
     width: fit-content;
 }
+
+button:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }

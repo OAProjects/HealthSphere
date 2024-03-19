@@ -1,14 +1,26 @@
 import styles from "./Landing.module.css";
+import background from "../../../assets/background.png";
 
 const Landing = () => {
   return (
-    <section className={styles.container}>
-      <h1>Welcome to Health Sphere</h1>
-      <p>Please login to book your doctors appointment</p>
-      <div className={styles.buttons}>
-
-        <button>Login</button>
-        <button>Register</button>
+    <section
+      className={styles.container}
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className={styles.hero}>
+        <h1>Welcome to Health Sphere</h1>
+        <p>
+          The No.1 booking system for your health and wellness needs. Book your
+          next appointment with us today!
+        </p>
+        <div className={styles.buttons}>
+          <button>Login</button>
+          <button>Register</button>
+        </div>
       </div>
     </section>
   );
