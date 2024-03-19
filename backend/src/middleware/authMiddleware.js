@@ -25,6 +25,7 @@ export const authMiddleware = async (req, res, next) => {
 
     req.user = user;
     req.role = decoded.role;
+    
     next();
   } catch (err) {
     return res.status(401).json({ error: "Invalid or expired token" });
