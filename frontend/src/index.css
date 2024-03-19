@@ -1,32 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;700&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:wght@300;400;500;700&family=Roboto&display=swap");
 :root {
-    --primary-color: #edf2f4;
-    --secondary-color: #7209b7;
-    --accent-color: #00b4d8;
+  --primary-color: #edf2f4;
+  --secondary-color: #7209b7;
+  --accent-color: #0080ff;
 
-    --text-white: #fff;
-    --text-black: #000;
+  --text-white: #fff;
+  --text-black: #000;
 
-    --xs-font-size: 0.75rem;
-    --sm-font-size: 0.875rem;
-    --md-font-size: 1rem;
-    --lg-font-size: 1.125rem;
-    --xl-font-size: 1.25rem;
-    --xxl-font-size: 1.5rem;
+  --xs-font-size: 0.75rem;
+  --sm-font-size: 0.875rem;
+  --md-font-size: 1rem;
+  --lg-font-size: 1.725rem;
+  --xl-font-size: 2.25rem;
+  --xxl-font-size: 3.5rem;
 
-    --font-family: 'Nunito', sans-serif;
+  --thin-font: 300;
+  --regular-font: 400;
+  --bold-font: 700;
+
+  --font-family: "Nunito", sans-serif;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-family);
-    font-size: var(--md-font-size);
-    background-color: var(--primary-color);
-    color: var(--text-black);
+  font-family: var(--font-family);
+  font-size: var(--md-font-size);
+  background-color: var(--primary-color);
+  color: var(--text-black);
 }
 
+h1 {
+  font-size: var(--xxl-font-size);
+  font-weight: var(--font-bold);
+  color: var(--accent-color);
+}
+p {
+  font-size: var(--md-font-size);
+  font-weight: var(--regular-font);
+  color: var(--text-black);
+}
+button {
+  font-family: var(--font-family);
+  font-size: var(--md-font-size);
+  cursor: pointer;
+  background-color: var(--accent-color);
+  border: 2px solid var(--text-white);
+  border-radius: 100px;
+  color: var(--text-white);
+  outline: none;
+  padding: 10px;
+
+  width: fit-content;
+}
+
+button:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  scale: 1.05;
+  transition: all 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-white);
+    padding: 10px;
+
+}
