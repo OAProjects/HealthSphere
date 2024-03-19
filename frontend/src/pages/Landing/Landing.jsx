@@ -1,5 +1,5 @@
 import styles from "./Landing.module.css";
-import background from "../../../assets/background.png";
+import background from "../../assets/background.png";
 
 const Landing = () => {
   return (
@@ -18,8 +18,12 @@ const Landing = () => {
           next appointment with us today!
         </p>
         <div className={styles.buttons}>
-          <button>Login</button>
-          <button>Register</button>
+          <button>
+            <a href="/login">Login</a>
+          </button>
+          <button>
+            <a href="/register">Register</a>
+          </button>
         </div>
       </div>
     </section>

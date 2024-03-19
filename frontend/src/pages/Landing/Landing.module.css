@@ -9,9 +9,7 @@
   margin-right: 10px;
   background-color: transparent;
 }
-.container .hero {
-  width: 30%;
-}
 .container .hero h1, .container .hero p {
   color: white;
+  width: 30%;
 }/*# sourceMappingURL=Landing.module.css.map */
