@@ -5,7 +5,7 @@ section
         justify-content: center
         align-items: center
         height: 100%
-        .panel
+        .register_container
             background: rgba( 255, 255, 255, 0.3 )
             backdrop-filter: blur( 7.5px )
             -webkit-backdrop-filter: blur( 7.5px )
@@ -14,11 +14,19 @@ section
             border: 1px solid rgba( 255, 255, 255, 0.18 )
             z-index: 4
             padding: 20px
+            margin: 20px
             display: flex
             flex-direction: column
             align-items: center
             justify-content: center
-        .form
-            display: flex
-            flex-direction: column
-            justify-content: center
+
+            .small_text
+                font-size: 1rem
+                text-align: left
+
+                span
+                    color: blue
+                    cursor: pointer
+
+                    &:hover
+                        text-decoration: underline

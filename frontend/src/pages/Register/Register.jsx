@@ -1,6 +1,5 @@
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import background from "../../assets/background.png";
 import axios from "axios";
@@ -10,15 +9,20 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
 
 const registerSchema = Yup.object().shape({
-  firstName: Yup.string().required("Required"),
-  lastName: Yup.string().required("Required"),
-  email: Yup.string().email("Invalid email address").required("Required"),
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
   password: Yup.string()
-    .min(6, "Password must contain at least 6 characters")
-    .required("Required"),
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+  role: Yup.string()
+    .oneOf(["patient", "doctor"])
+    .required("User Type is required"),
 });
 
-const Register = () => {
+function Register() {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -51,97 +55,126 @@ const Register = () => {
       }}
     >
       <div className={styles.container}>
-        <div className={styles.panel}>
+        <div className={styles.register_container}>
           <h1>Register</h1>
-          <Form className={styles.form} onSubmit={formik.handleSubmit}>
-            <Form.Group as={Row} className="mb-3">
-              <Col sm={10}>
-                <Form.Check
-                  type="radio"
-                  label="Patient"
-                  name="role"
-                  value="patient"
-                  id="role-patient"
-                  checked={formik.values.role === "patient"}
+          <Form onSubmit={formik.handleSubmit}>
+            <Row className="mb-3 g-3">
+              <Form.Group className="col-md-6" controlId="formGridFirstName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  className={
+                    formik.touched.firstName && formik.errors.firstName
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="text"
+                  placeholder="Enter first name"
+                  name="firstName"
+                  value={formik.values.firstName}
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-                <Form.Check
-                  type="radio"
-                  label="Doctor"
-                  name="role"
-                  value="doctor"
-                  id="role-doctor"
-                  checked={formik.values.role === "doctor"}
+                {formik.touched.firstName && formik.errors.firstName}
+              </Form.Group>
+
+              <Form.Group className="col-md-6" controlId="formGridLastName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  className={
+                    formik.touched.lastName && formik.errors.lastName
+                      ? "is-invalid"
+                      : ""
+                  }
+                  type="text"
+                  placeholder="Enter last name"
+                  name="lastName"
+                  value={formik.values.lastName}
                   onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                 />
-              </Col>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>First Name</Form.Label>
+                {formik.touched.lastName && formik.errors.lastName}
+              </Form.Group>
+            </Row>
+
+            <Form.Group className="col-md-12 mb-3" controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter your full name"
-                name="firstName"
-                value={formik.values.firstName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.firstName && formik.errors.firstName && (
-                <div className="error">{formik.errors.firstName}</div>
-              )}
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your full name"
-                name="lastName"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-              {formik.touched.lastName && formik.errors.lastName && (
-                <div className="error">{formik.errors.lastName}</div>
-              )}
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Enter your email address:</Form.Label>
-              <Form.Control
+                className={
+                  formik.touched.email && formik.errors.email
+                    ? "is-invalid"
+                    : ""
+                }
                 type="email"
-                placeholder="Enter your your email address"
+                placeholder="email@hotmail.com"
                 name="email"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.email && formik.errors.email && (
-                <div className="error">{formik.errors.email}</div>
-              )}
+              {formik.touched.email && formik.errors.email}
             </Form.Group>
-            <Form.Group>
+
+            <Form.Group className="col-md-12 mb-3" controlId="formGridPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                className={
+                  formik.touched.password && formik.errors.password
+                    ? "is-invalid"
+                    : ""
+                }
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.password && formik.errors.password && (
-                <div className="error">{formik.errors.password}</div>
-              )}
+              {formik.touched.password && formik.errors.password}
             </Form.Group>
-            <a href="/login">Already have an account? Login here</a>
+
+            <Row className="col-md-14">
+              <Form.Group controlId="formGridState">
+                <Form.Label>User Type</Form.Label>
+                <Form.Select
+                  className={
+                    formik.touched.role && formik.errors.role
+                      ? "is-invalid"
+                      : ""
+                  }
+                  name="role"
+                  value={formik.values.role}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                >
+                  <option value="patient">Patient</option>
+                  <option value="doctor">Doctor</option>
+                </Form.Select>
+                {formik.touched.role && formik.errors.role}
+              </Form.Group>
+
+              <div className="col-12 mt-3">
+                <p className={styles.small_text}>
+                  Already have an account?{" "}
+                  <span
+                    className={styles.link}
+                    onClick={() => {
+                      navigate("/login");
+                    }}
+                  >
+                    Login here
+                  </span>
+                </p>
+              </div>
+            </Row>
+
             <Button variant="primary" type="submit">
               Register
             </Button>
-            <fieldset></fieldset>
           </Form>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default Register;
